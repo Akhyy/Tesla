@@ -7,6 +7,7 @@ import os
 from GPIO.UltrasonicSensor import UltrasonicSensor
 from GPIO.IrSensor import IrSensor
 from VEHICLE.Vehicle import Vehicle
+from PWM.Motor import Motor
 
 
 # "Main" Class code
@@ -33,21 +34,44 @@ if __name__ == "__main__":
         print("----- Menu -----")
         print("1 - Go straight")
         print("2 - Go backwards")
-        print("3 - Straight, variable speed")
-        print("4 - Backwards, variable speed")
-        print("5 - 180 left")
-        print("6 - 180 right")
-        print("7 - Making a 8")
-        print("8 - Go along a wall")
-        print("9 - Straight until obstacle")
-        print("10 - Straight until dark")
-        print("11 - Straight until n laps")
+        print("3 - Stop Wheels")
+        print("4 - Straight, variable speed")
+        print("5 - Backwards, variable speed")
+        print("6 - 180 left")
+        print("7 - 180 right")
+        print("8 - Making a 8")
+        print("9 - Go along a wall")
+        print("10 - Straight until obstacle")
+        print("11 - Straight until dark")
+        print("12 - Straight until n laps")
         print("999 - exit")
         print("----------------")
         inputMenu = int(input("What do you want to do ? : "))
         os.system('clear')
 
-        if inputMenu == 9:
+        if inputMenu == 1 :
+            motor = Motor(11,12,4)
+            motor.setup()
+            #test()
+            motor.setSpeed(30)
+            motor.forward()
+        
+        elif inputMenu == 3:
+            try:
+                motor = Motor(11,12,4)
+                motor.setSpeed(0)
+            except:
+                pass
+       
+        elif inputMenu == 4 :
+            motor = Motor(11,12,4)
+            motor.setup()
+            #test()
+            motor.setSpeed(30)
+            motor.forward()
+
+
+        elif inputMenu == 9:
             t1 = threading.Thread(target=vehicle.moveUntilObstacle, args=(capteur,))
             t1.start()
             t1.join()

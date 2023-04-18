@@ -6,7 +6,7 @@ import os
 
 class Vehicle:
     # Constructor
-    def __init__(self, name):
+    def __init__(self, name="Tesla"):
         self.__name = name
         self.__sensors = []
 

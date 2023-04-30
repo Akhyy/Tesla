@@ -18,5 +18,3 @@ Install the dependencies with pip.
 ```bash
   pip install -r requirements.txt
 ```
-## How it works
-
